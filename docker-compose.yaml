@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+    mymongodb:
+        image: 'mongo'
+        ports:
+            - '27017:27017'
+        volumes:
+            - database:/data/db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: 'mutual'
+            MONGO_INITDB_ROOT_PASSWORD: 'mutual'
+    backend:
+        build: .
+        restart: always
+        ports:
+            - '3333:3333'
+        depends_on:
+            - mymongodb
+        volumes:
+            - .:/app
+volumes:
+    database:
