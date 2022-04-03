@@ -2,16 +2,19 @@ import express from 'express';
 import { uuid } from 'uuidv4';
 import { Account } from '../entities/Account';
 import { IAccount } from '../interfaces/Account';
+import { validateCPF } from '../middlewares/validateCPF';
 
 const accountsRoutes = express.Router();
 
-accountsRoutes.post('/accounts', async (req, res) => {
+accountsRoutes.post('/accounts', validateCPF, async (req, res) => {
     const { cpf, name } = req.body;
+
+    const sanitizedCPF = cpf.replace(/[^\d]+/g, '');
 
     const account: IAccount = new Account();
 
     account.UUID = uuid();
-    account.cpf = cpf;
+    account.cpf = sanitizedCPF;
     account.name = name;
 
     try {
