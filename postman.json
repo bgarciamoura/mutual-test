@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "04edc5f7-f6fe-4e7e-9331-9e6b11caa449",
+		"name": "Mutual-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bruno Garcia Moura\",\r\n    \"cpf\": \"564.680.490-67\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/accounts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "READ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/70122909-0155-4617-826a-6556b05ef3f5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"70122909-0155-4617-826a-6556b05ef3f5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Bruno Garcia Moura\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/accounts/3e3db2ec-2770-4a9c-9478-668e1880d004",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"3e3db2ec-2770-4a9c-9478-668e1880d004"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/91d940a4-4b2f-4885-8826-91643a4189fd",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"91d940a4-4b2f-4885-8826-91643a4189fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BALANCE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/accounts/70122909-0155-4617-826a-6556b05ef3f5/balance",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"accounts",
+								"70122909-0155-4617-826a-6556b05ef3f5",
+								"balance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movement",
+			"item": [
+				{
+					"name": "CREDIT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": \"70122909-0155-4617-826a-6556b05ef3f5\",\r\n    \"value\": 550\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/movement/credit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movement",
+								"credit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEBIT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"accountId\": \"70122909-0155-4617-826a-6556b05ef3f5\",\r\n    \"value\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/movement/debit",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movement",
+								"debit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TRASFER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"targetAccountId\": \"70122909-0155-4617-826a-6556b05ef3f5\",\r\n    \"value\": 1000,\r\n    \"accountId\": \"cace2990-ed6a-4c89-b4d1-81c559a750bf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/movement/transfer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"movement",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3333/api/v1",
+			"type": "string"
+		}
+	]
+}
