@@ -1,0 +1,9 @@
+{
+  "name": "mutual-test",
+  "version": "0.0.1",
+  "description": "Programmer job test for Mutual",
+  "main": "index.ts",
+  "repository": "https://github.com/bgarciamoura/mutual-test",
+  "author": "BG",
+  "license": "MIT"
+}
