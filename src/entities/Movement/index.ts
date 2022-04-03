@@ -6,7 +6,7 @@ const MovementSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    account_id: {
+    accountId: {
         type: String,
         required: true,
     },
