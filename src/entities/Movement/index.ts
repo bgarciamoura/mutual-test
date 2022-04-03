@@ -14,6 +14,10 @@ const MovementSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    type: {
+        type: String,
+        required: true,
+    },
     created_at: {
         type: Date,
         default: Date.now,
