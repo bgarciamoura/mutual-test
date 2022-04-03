@@ -1,5 +1,5 @@
 import express from 'express';
-import { uuid } from 'uuidv4';
+import { isUuid, uuid } from 'uuidv4';
 import { Account } from '../entities/Account';
 import { IAccount } from '../interfaces/Account';
 import { validateCPF } from '../middlewares/validateCPF';
@@ -35,6 +35,82 @@ accountsRoutes.get('/accounts', async (req, res) => {
     } catch (error) {
         console.log('ERROR ON GET ACCOUNTS: ', error);
         res.status(500).send({ error: 'Error on get accounts' });
+    }
+});
+
+accountsRoutes.get('/accounts/:uuid', async (req, res) => {
+    const { uuid } = req.params;
+
+    console.log('uuid: ', uuid);
+
+    if (!uuid) {
+        return res.status(400).send({ error: 'UUID is required' });
+    }
+
+    try {
+        const account = await Account.findOne({ UUID: uuid });
+
+        if (!account) {
+            return res.status(404).send({ error: 'Account not found' });
+        }
+
+        res.status(200).json(account);
+    } catch (error) {
+        console.log('ERROR ON GET ACCOUNT: ', error);
+        res.status(500).send({ error: 'Error on get account' });
+    }
+});
+
+accountsRoutes.put('/accounts/:uuid', async (req, res) => {
+    const { name } = req.body;
+    const { uuid } = req.params;
+
+    if (!uuid || !isUuid(uuid)) {
+        return res.status(400).send({ error: 'UUID is required or is not valid' });
+    }
+
+    if (!name) {
+        return res.status(400).send({ error: 'Name is required' });
+    }
+
+    try {
+        const account = await Account.findOne({ UUID: uuid });
+
+        if (!account) {
+            return res.status(404).send({ error: 'Account not found' });
+        }
+
+        account.name = name;
+
+        const updatedAccount = await account.save();
+
+        res.status(200).json(updatedAccount);
+    } catch (error) {
+        console.log('ERROR ON UPDATE ACCOUNT: ', error);
+        res.status(500).send({ error: 'Error on update account' });
+    }
+});
+
+accountsRoutes.delete('/accounts/:uuid', async (req, res) => {
+    const { uuid } = req.params;
+
+    if (!uuid || !isUuid(uuid)) {
+        return res.status(400).send({ error: 'UUID is required or is not valid' });
+    }
+
+    try {
+        const account = await Account.findOne({ UUID: uuid });
+
+        if (!account) {
+            return res.status(404).send({ error: 'Account not found' });
+        }
+
+        await account.remove();
+
+        res.status(204).send({ message: 'Account deleted' });
+    } catch (error) {
+        console.log('ERROR ON DELETE ACCOUNT: ', error);
+        res.status(500).send({ error: 'Error on delete account' });
     }
 });
 
