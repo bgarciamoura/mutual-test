@@ -35,6 +35,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
         -   [Transfer Between Accounts](#transfer-between-accounts)
 -   [Documentation](#documentation)
 -   [Testing](#testing)
+-   [Trello Board](#trello-board)
 
 ## Getting Started
 
@@ -157,6 +158,6 @@ With the project running, you can access the documentation by accessing the foll
 
 To test the routes, you can use Postman. You can find the documentation [here](https://www.getpostman.com/docs/). In the root folder of the project, you can find the collection file for testing the routes in Postman.
 
-## Links
+## Trello Board
 
 The following links is for Trello board with all tasks to finish the project. You can find the board [here](https://trello.com/invite/b/CQRtcfPO/043d374712c57d2e70d988fac33b9a47/kanban-mutual).
