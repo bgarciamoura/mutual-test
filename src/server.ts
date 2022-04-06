@@ -20,4 +20,8 @@ app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', accountsRoutes);
 app.use('/api/v1', movementRoutes);
 
+app.get('/api/v1', (req, res) => {
+    res.send('Welcome to the API');
+});
+
 export { app, PORT };
