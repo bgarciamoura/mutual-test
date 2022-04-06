@@ -17,7 +17,7 @@ afterAll(async () => {
 
 describe('Movement creation test', () => {
     it('can be created correctly', async () => {
-        expect.assertions(5);
+        expect.assertions(6);
 
         const id = uuid();
         const accountId = uuid();
@@ -27,18 +27,18 @@ describe('Movement creation test', () => {
         movement.UUID = id;
         movement.accountId = accountId;
         movement.value = 100;
+        movement.type = 'credit';
         movement.created_at = new Date();
 
         await movement.save();
 
         const movementFound = await Movement.findOne({ UUID: id });
 
-        console.log('movementFound: ', movementFound);
-
         expect(movementFound).toBeDefined();
         expect(movementFound).toBeInstanceOf(Movement);
-        expect(true).toBe(isUuid(movementFound.UUID));
-        expect(true).toBe(isUuid(movementFound.accountId));
+        expect(isUuid(movementFound.UUID)).toBe(true);
+        expect(isUuid(movementFound.accountId)).toBe(true);
+        expect(movementFound.type).toBe('credit');
         expect(movementFound.value).toBe(100);
     });
 });
